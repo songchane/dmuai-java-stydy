@@ -1,0 +1,17 @@
+*{
+    border: solid 1px yellowgreen;
+}
+
+label {
+    background-color: lightpink;
+}
+
+.bg-pink {
+    background-color: lightpink;
+}
+
+main form select {
+    border-radius: 10px;
+}
+
+input#user-id
