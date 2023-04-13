@@ -1,0 +1,51 @@
+안드로이드의 이벤트 처리 모델
+- 델리게이션(위임) 모델: 발생 이벤트를 이벤트 처리기로 위임하여 처리, 클래스로 정의해 객체를 만들어 위임함
+- 하이어라키(계층구조) 모델: 뷰의 위계 구조를 따라 이벤트 전달, event source의 true를 받으면 다시 올라가고 false를 받으면 올라가지 않음
+
+
+이벤트 처리기
+- 이벤트 콜백 메소드
+ex) 터치 이벤트: MotionEvent.ACTION_(DOWN, UP, MOVE) / rawX, rawY를 통해 좌표를 알 수 있음
+- 이벤트 리스너
+각 이벤트별로 처리를 위해 미리 정의되어 있는 리스너 인터페이스가 존재
+리스너 인터페이스를 상속 받아 클래스 정의 -> 정의한 클래스를 가지고 객체 생성 -> 이벤트 소스에게 이벤트가 무엇인지 처리
+
+Toast(토스트창)
+- 사용자에게 정보 알림의 기능 제공, 메시지를 잠시 보여주고 사라지는 뷰
+- 메소드: makeText(): 토스트 생성, show(): 토스트 화면에 보이기 / static 메소드여서 객체 생성 안해도 가능
+/ LENGTH_LONG or LENGTH_SHORT : 보여주고싶은 시간 짧게 길게 
+
+- 뷰 이벤트 처리 구조
+클릭 -> 안드로이드 시스템이 반영 -> 시스템 반영해서 Q에서 쌓음 -> 루프로 돌림
+
+- 인터페이스 넘어감
+
+- 클릭 이벤트 처리
+1. 이름있는 클래스로 구현
+2. 익명 클래스로 구현
+
+- 1학기 1년 사용 시험 나옴/ group/horizon, button/width=0dp, weight=1
+- 뷰바인딩/ Gradle Script - 두 번째 그리들 파일 - buildFeatures {viewBinding=true} - 코끼리 버튼으로 싱크 맞추기 
+ (온크리에이트 위에 작성)  
+lateinit var binding:ActivityMainBinding
+   
+(온크리에이트 안에 작성)
+binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
+CheckBox
+- CompoundButton을 상속받아 정의
+- 기본속성" checked(기본 선택 여부 설정 default:false)
+- 기본 프로퍼티와 메소드: isChecked(현재 위젯의 체크 상태 변경, 참조에 사용), toggle(): 위젯의 체크상태 반전
+
+setOnCheckedChangeListener(): 체크 상태가 변경될 때마다 CheckedChange 이벤트 발생 
+ex) 체크 박스를 계속 다시 선택할때마다 토스트 창이 생성
+
+
+- 시험: 제목 안보이게 함
+val strTitle:String = getString(R.string.title)
+        binding.textTitle.text = strTitle
+        binding.textTitle.visibility = View.GONE
+
+
